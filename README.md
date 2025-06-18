@@ -1,5 +1,6 @@
 # Welcome to Bright Mind app 👋
-Try running it yourself at [https://brightmindapp--8oktipcyki.expo.app]
+Try running it yourself at [(https://brightmindapp.expo.app)]
+
 Disclaimer: This app is optimized for the best experience on mobile screens. Some features may not display as intended on larger screens or desktops. 😊📱 
 
 # About BrightMind
