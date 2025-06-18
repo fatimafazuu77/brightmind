@@ -1,4 +1,24 @@
-# Welcome to your Expo app 👋
+# Welcome to Bright Mind app 👋
+Try running it yourself [https://snack.expo.dev/@fazmp77/e42c16?platform=web]
+
+# About BrightMind
+BrightMind is an AI-driven educational app that transforms how you learn. With its innovative features like AI-powered course generation, interactive flashcards, and engaging quizzes, BrightMind makes education personalized, effective, and fun. Whether you're studying for exams, upskilling for your career, or exploring new interests, BrightMind adapts to your learning journey.
+
+Key Features:
+# AI Course Generator: 
+Automatically create customized courses based on your topics of interest.
+
+# Flashcards for Quick Learning:
+Retain key concepts with flashcards tailored to your course.
+
+# Interactive Quizzes:
+Test your knowledge and track your progress with dynamic quizzes.
+
+# Diverse Course Library:
+Explore pre-designed courses across multiple subjects and skill levels.
+
+# User-Friendly Interface: 
+Simplify learning with an intuitive and visually appealing design.
 
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
 
