@@ -1,11 +1,11 @@
 import { View, Text , TouchableOpacity } from 'react-native'
-import React, { useContext } from 'react'
+import React from 'react'
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { UserDetailsContext } from '../../context/UserDetailsContext'
-export default function Header() {
-const {userDetail, setUserDetail } = useContext(UserDetailsContext)
- 
+import { useUserDetails } from '../../app/context/UserDetailContext'
 
+export default function Header() {
+  const { userDetails } = useUserDetails()
+ 
   return (
     <View style={{
         display:'flex',
@@ -14,12 +14,15 @@ const {userDetail, setUserDetail } = useContext(UserDetailsContext)
         alignItems:'center',
         }}>
         <View>
-      <Text style={{fontFamily: 'outfit-bold',
+      <Text style={{
+        // fontFamily: 'outfit-bold',
+        fontWeight: 'bold',
         fontSize:25
       }}
-      >Hello, {userDetail?.name } </Text>
+      >Hello, {userDetails?.name } </Text>
     <Text style={{
-        fontFamily: 'outfit',
+        // fontFamily: 'outfit',
+        fontWeight: 'normal',
         fontSize:17
     }}>Let's get started</Text>
     </View>

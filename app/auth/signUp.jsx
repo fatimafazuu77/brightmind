@@ -1,43 +1,48 @@
 import { Image, StyleSheet, View, Text, TouchableOpacity, TextInput, Pressable } from 'react-native';
-import React , {useContext, useState} from 'react';
+import React , {useState} from 'react';
 import { useRouter } from "expo-router";
 import Colors from '../../constant/Colors';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { ScreenStackHeaderConfig } from 'react-native-screens';
 import { auth, db } from '../../config/firebaseConfig';
 import { doc, setDoc } from 'firebase/firestore';
-import { UserDetailsContext } from '../../context/UserDetailsContext';
+import { useUserDetails } from '../context/UserDetailContext';
 
 export default function SignUp() {
   const router = useRouter();
-  const[fullName,setFulName]= useState();
-  const[email,setEmail]= useState();
-  const[password,setPassword]= useState();
-  const {UserDetail,setUserDetail} = useContext(UserDetailsContext);
+  const [fullName, setFullName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const { updateUserDetails } = useUserDetails();
 
-  const CreateNewAccount=()=>{
-    createUserWithEmailAndPassword(auth ,email,password)
-    .then(async(resp)=>{
-      const user= resp.user ;
+  const CreateNewAccount = () => {
+    if (!email || !password || !fullName) {
+      return;
+    }
+    
+    createUserWithEmailAndPassword(auth, email, password)
+    .then(async(resp) => {
+      const user = resp.user;
       console.log(user);
       await SaveUser(user);
-      //save user to db
     })
-    .catch(e=>{
-      console.log(e.message)
-    })
-  }
-  const SaveUser =async(user)=> {
-    const data ={
-      name:fullName,
-      email:email,
-      member:false,
-      uid:user?.uid
-    }
-    await setDoc(doc(db,'users', email),data)
-    setUserDetails(data);
-    //Navigate to new screen 
-  }
+    .catch(e => {
+      console.log(e.message);
+    });
+  };
+
+  const SaveUser = async(user) => {
+    const data = {
+      name: fullName,
+      email: email,
+      member: false,
+      uid: user?.uid
+    };
+    await setDoc(doc(db, 'users', email), data);
+    updateUserDetails(data);
+    router.replace('/(tabs)/home');
+  };
+
   return (
     <View style={{
       display: 'flex',
@@ -47,31 +52,53 @@ export default function SignUp() {
       flex: 1,
       backgroundColor: Colors.WHITE
     }}>
-      <Image source={require('../../assets/images/logobright.jpeg')}
+      <Image source={require('../../assets/images/logo3.png')}
         style={{
-          width: 180,
+          width: 250,
           height: 180,
           marginTop:70
         }}
       />
       <Text style={{
         fontSize: 30,
-        fontFamily: 'outfit-bold'
+        fontWeight: 'bold'
       }}>Create New Account</Text>
 
-      <TextInput placeholder='Full Name'  onChangeText={(value)=>setFulName(value)}  placeholderTextColor="#000" style={styles.textinput} />
-      <TextInput placeholder='Email' onChangeText={(value)=>setEmail(value)}  placeholderTextColor="#000"  style={styles.textinput} />
-      <TextInput placeholder='Password' onChangeText={(value)=>setPassword(value)} placeholderTextColor="#000" secureTextEntry={true} style={styles.textinput} />
+      <TextInput 
+        placeholder='Full Name'  
+        onChangeText={(value) => setFullName(value)}
+        value={fullName}
+        placeholderTextColor="#000" 
+        style={styles.textinput} 
+      />
+      <TextInput 
+        placeholder='Email' 
+        onChangeText={(value) => setEmail(value)}
+        value={email}
+        placeholderTextColor="#000"  
+        style={styles.textinput} 
+      />
+      <TextInput 
+        placeholder='Password' 
+        onChangeText={(value) => setPassword(value)}
+        value={password}
+        placeholderTextColor="#000" 
+        secureTextEntry={true} 
+        style={styles.textinput} 
+      />
 
-      <TouchableOpacity onPress={CreateNewAccount} style={{
-        padding: 15,
-        backgroundColor: Colors.PRIMARY,
-        width: '100%',
-        marginTop: 25,
-        borderRadius: 10
-      }}>
+      <TouchableOpacity 
+        onPress={CreateNewAccount} 
+        style={{
+          padding: 15,
+          backgroundColor: Colors.PRIMARY,
+          width: '100%',
+          marginTop: 25,
+          borderRadius: 10
+        }}
+      >
         <Text style={{
-          fontFamily: 'outfit',
+          fontWeight: 'normal',
           color: Colors.WHITE,
           textAlign: 'center'
         }}>Create Account</Text>
@@ -79,17 +106,18 @@ export default function SignUp() {
 
       <View style={{
         display: 'flex',
-        flexDirection: 'row', gap: 5,
+        flexDirection: 'row', 
+        gap: 5,
         marginTop: 20
       }}>
         <Text style={{
-          fontFamily: 'outfit'
+          fontWeight: 'normal'
         }}>Already have an account?
         </Text>
         <Pressable onPress={() => router.push('/auth/signIn')}>
           <Text style={{
             color: Colors.PRIMARY,
-            fontFamily: 'outfit-bold'
+            fontWeight: 'bold'
           }}>Sign in Here</Text>
         </Pressable>
       </View>

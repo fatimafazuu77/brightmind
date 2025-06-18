@@ -1,8 +1,8 @@
-import { View, Text ,Image} from 'react-native'
+import { View, Text, Image } from 'react-native'
 import React from 'react'
 import Button from '../Shared/Button'
 import { useRouter } from 'expo-router'
-
+import BackgroundContainer from '../Shared/BackgroundContainer'
 
 export default function NoCourse() {
   const router = useRouter();
@@ -21,7 +21,8 @@ export default function NoCourse() {
       }}
       />
       <Text style={{
-        fontFamily: 'outfit-bold',
+        // fontFamily: 'outfit-bold',
+        fontWeight: 'bold',
         fontSize: 25,
         textAlign: 'center'
       }}>You Don't Have Any course</Text>
