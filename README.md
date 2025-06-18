@@ -1,5 +1,6 @@
 # Welcome to Bright Mind app 👋
-Try running it yourself [https://snack.expo.dev/@fazmp77/e42c16?platform=web]
+Try running it yourself at [https://brightmindapp--8oktipcyki.expo.app]
+Disclaimer: This app is optimized for the best experience on mobile screens. Some features may not display as intended on larger screens or desktops. 😊📱 
 
 # About BrightMind
 BrightMind is an AI-driven educational app that transforms how you learn. With its innovative features like AI-powered course generation, interactive flashcards, and engaging quizzes, BrightMind makes education personalized, effective, and fun. Whether you're studying for exams, upskilling for your career, or exploring new interests, BrightMind adapts to your learning journey.
